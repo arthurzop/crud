@@ -1,5 +1,6 @@
-import "./categoria.css";
-import "./card.css";
+import React from 'react'
+import "../categorias/categoria.css";
+import "../categorias/card.css";
 
 import { useState } from "react";
 
@@ -18,15 +19,14 @@ import refri from '../../assets/images/image 6.png'
 import excluir from '../../assets/icons/delete.png'
 import editar from '../../assets/icons/edit.png' 
 
-export default function Categorias() {
-  const [salgado, setSalgado] = useState(false);
+const CategoriasLog = () => {
+    const [salgado, setSalgado] = useState(false);
   const [lanche, setLanche] = useState(false);
   const [bebidas, setBebida] = useState(false);
   const [outros, setOutros] = useState(false);
-
   return (
     <>
-      <div className="categoria-container">
+    <div className="categoria-container">
         <h1>Categorias:</h1>
         <div className="categoria-itens">
           <button
@@ -87,7 +87,14 @@ export default function Categorias() {
             <h3 id="preco">R$10</h3>
           </div> 
         </div>
-
+          <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
       {salgado &&
@@ -101,6 +108,14 @@ export default function Categorias() {
                 <h3 id='preco'>R$5</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
       {bebidas &&
@@ -114,6 +129,14 @@ export default function Categorias() {
                 <h3 id='preco'>R$5</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
       {outros &&
@@ -127,9 +150,18 @@ export default function Categorias() {
                 <h3 id='preco'>R$15</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
     </>
-
-  );
+  )
 }
+
+export default CategoriasLog

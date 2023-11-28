@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -25,8 +24,8 @@ const Login = (props) => {
   const nav = useNavigate()
 
   const onLoginSuccess = () => {
-    nav("/logado")
     setTimeout(() => props.setTrigger(false), 1100)
+    nav("/logado")
   }
 
   return props.trigger ? (

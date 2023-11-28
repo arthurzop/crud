@@ -4,7 +4,6 @@ import App from './App';
 import Home from './pages/home';
 import Logado from './pages/homeLog';
 import "./index.css"
-
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -17,7 +16,7 @@ const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: "logado",
+                path: "/logado",
                 element: <Logado/>
             }
     ]}
