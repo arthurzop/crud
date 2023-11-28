@@ -5,16 +5,12 @@ import { useNavigate } from "react-router-dom";
 const HeaderLog = () => {
   const nav = useNavigate();
 
-  const sair = () => {
-    nav(-1);
-  };
-
   return (
     <>
       <div className="header-container">
         <div className="header-top">
           <h1>Cantina Senai</h1>
-          <button onClick={sair()} className="header-btn">
+          <button onClick={nav(-1)} className="header-btn">
             <img src={icone} alt="icon" id="icon-user" />
           </button>
         </div>
