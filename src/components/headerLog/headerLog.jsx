@@ -1,6 +1,7 @@
 import "../header/header.css";
 import icone from "../../assets/icons/leave.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+
 
 const HeaderLog = () => {
   const nav = useNavigate();
@@ -10,7 +11,7 @@ const HeaderLog = () => {
       <div className="header-container">
         <div className="header-top">
           <h1>Cantina Senai</h1>
-          <button onClick={nav(-1)} className="header-btn">
+          <button onClick={() => nav("/")} className="header-btn">
             <img src={icone} alt="icon" id="icon-user" />
           </button>
         </div>

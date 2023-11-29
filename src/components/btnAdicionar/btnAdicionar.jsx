@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import plus from "../../assets/icons/plus.png";
+import { ToastContainer, toast } from 'react-toastify';
 import "./btnAdicionar.css";
 
 function BtnAdicionar() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
+
+  const [nome, setNome] = useState("");
+  const [valor, setValor] = useState(0);
+  const [descricao, setDescricao] = useState("");
+  const [categoria, setCategoria] = useState("");
+
+  function handleSalvar() {
+    if(nome === "" || valor === "" || descricao === ""){
+      toast.warning("Preencha todos os campos!")
+    }
+    else{
+      //manda pro banco se tiver tudo certo
+      toast.success("Item salvo com sucesso!")
+    }
+  }
+
 
   return (
     <>
@@ -16,6 +33,15 @@ function BtnAdicionar() {
       {openModal && (
         <>
           <div className="popup">
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
             <div className="container-add">
               <div className="top">
                 <h1>Novo item</h1>
@@ -30,11 +56,13 @@ function BtnAdicionar() {
               <div className="add-form">
                 <div className="form-item">
                   <h3>Nome do Item:</h3>
-                  <input type="text" placeholder="Ex: X-Tudo" />
+                  <input type="text" placeholder="Ex: X-Tudo" 
+                  onChange={(e) => setNome(e.target.value)}/>
                 </div>
                 <div className="form-item">
                   <h3>Valor:</h3>
-                  <input type="text" placeholder="R$" />
+                  <input type="text" placeholder="R$" 
+                  onChange={(e) => setValor(e.target.value)}/>
                 </div>
                 <div className="form-item">
                   <h3>Descrição:</h3>
@@ -42,11 +70,16 @@ function BtnAdicionar() {
                     type="text"
                     className="descricao"
                     placeholder="Ex: Pão, Hamburguer, etc."
+                    onChange={(e) => setDescricao(e.target.value)}
                   />
                 </div>
                 <div className="form-item">
                   <h3>Categoria: </h3>
-                  <select name="categoria" className="categoria">
+                  <select
+                    name={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                    className="categoria"
+                  >
                     <option value="lanches">Lanches</option>
                     <option value="salgados">Salgados</option>
                     <option value="bebidas">Bebidas</option>
@@ -55,7 +88,9 @@ function BtnAdicionar() {
                 </div>
               </div>
               <div className="botoes-add">
-                <button>Salvar</button>
+                {/* retornando um array com as opcoes (nome, valor, descricao e categoria) */}
+                {/* <button onClick={() => {console.log([nome, valor, descricao, categoria])}}>Salvar</button> */}
+                <button onClick={() => handleSalvar()}>Salvar</button>
               </div>
             </div>
           </div>
