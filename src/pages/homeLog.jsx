@@ -5,9 +5,6 @@ import CategoriasLog from '../components/categoriasLog/categoriasLog'
 import BtnAdicionar from '../components/btnAdicionar/btnAdicionar'
 
 const HomeLog = () => {
-
-    const [openAdd, setOpenAdd] = useState(false)
-
   return (
     <>
         <HeaderLog/>

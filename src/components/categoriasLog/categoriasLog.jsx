@@ -20,7 +20,7 @@ import excluir from '../../assets/icons/delete.png'
 import editar from '../../assets/icons/edit.png' 
 
 const CategoriasLog = () => {
-    const [salgado, setSalgado] = useState(false);
+  const [salgado, setSalgado] = useState(false);
   const [lanche, setLanche] = useState(false);
   const [bebidas, setBebida] = useState(false);
   const [outros, setOutros] = useState(false);
@@ -48,7 +48,7 @@ const CategoriasLog = () => {
               setBebida(false),
               setSalgado(true),
               setOutros(false)
-            }}          >
+            }}>
             <img src={iconsalgado} alt="lanche" className="icon-categoria" />
             <h4>Salgados</h4>
           </button>

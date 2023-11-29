@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "./btnAdicionar.css";
 
 function BtnAdicionar() {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState(0);
