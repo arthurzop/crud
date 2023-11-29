@@ -32,9 +32,9 @@ const CategoriasLog = () => {
           <button
             className="categoriaBtn"
             onClick={() => {
-              setLanche(true),
-              setBebida(false),
-              setSalgado(false),
+              setLanche(true)
+              setBebida(false)
+              setSalgado(false)
               setOutros(false)
             }}
           >
@@ -44,9 +44,9 @@ const CategoriasLog = () => {
           <button
             className="categoriaBtn"
             onClick={() => {
-              setLanche(false),
-              setBebida(false),
-              setSalgado(true),
+              setLanche(false)
+              setBebida(false)
+              setSalgado(true)
               setOutros(false)
             }}>
             <img src={iconsalgado} alt="lanche" className="icon-categoria" />
@@ -55,9 +55,9 @@ const CategoriasLog = () => {
           <button
             className="categoriaBtn"
             onClick={() => {
-              setLanche(false),
-              setBebida(true),
-              setSalgado(false),
+              setLanche(false)
+              setBebida(true)
+              setSalgado(false)
               setOutros(false)
             }}          >
             <img src={iconbebidas} alt="lanche" className="icon-categoria" />
@@ -66,9 +66,9 @@ const CategoriasLog = () => {
           <button
             className="categoriaBtn"
             onClick={() => {
-              setLanche(false),
-              setBebida(false),
-              setSalgado(false),
+              setLanche(false)
+              setBebida(false)
+              setSalgado(false)
               setOutros(true)
             }}          >
             <img src={iconoutros} alt="lanche" className="icon-categoria" />
