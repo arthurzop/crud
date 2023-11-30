@@ -83,3 +83,35 @@ select{
     background-color: #8cdd7e;
     cursor: pointer;
 }
+
+.btns{
+    display: flex;
+    gap: 2vw;
+    width: 80%;
+}
+
+.BtnCancelar{
+    width: 50%;
+    padding: 1.3vh;
+    border: none;
+    color: #000;
+    background-color: #cccccc;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.BtnDeletar{
+    width: 50%;
+    padding: 1.3vh;
+    border: none;
+    color: #000;
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+
+}

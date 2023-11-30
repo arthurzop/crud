@@ -47,9 +47,7 @@ function BtnAdicionar() {
                 <h1>Novo item</h1>
                 <button
                   onClick={() => setOpenModal(false)}
-                  className="add-sair"
-                >
-                  {" "}
+                  className="add-sair">
                   ✕
                 </button>
               </div>

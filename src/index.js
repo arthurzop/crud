@@ -9,6 +9,9 @@ import App from "./App";
 import Salgado from "./components/categoriasLog/card/salgado";
 import Bebidas from "./components/categoriasLog/card/bebida";
 import Outros from "./components/categoriasLog/card/outros";
+import BtnEditar from "./components/btnCrud/btnEditar";
+import BtnDeletar from "./components/btnCrud/btnDelete";
+
 
 const router = createBrowserRouter([
   {
@@ -39,6 +42,15 @@ const router = createBrowserRouter([
         path: "/outro",
         element: <Outros />,
       },
+      {
+        path: "/BtnEditar",
+        element: <BtnEditar/>
+      },
+      {
+        path: "/BtnDeletar",
+        element: <BtnDeletar/>
+      }
+      
     ],
   },
 ]);
