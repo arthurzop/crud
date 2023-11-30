@@ -1,7 +1,8 @@
-import "./categoria.css";
-import "./card.css";
+import React, { useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import "../categorias/categoria.css";
+import "../categorias/card.css";
 
-import { useState } from "react";
 
 //importando os icones
 import iconlanche from "../../assets/icons/icons8-hambúrguer-48.png";
@@ -15,25 +16,29 @@ import coxinha from '../../assets/images/image2.png'
 import acai from '../../assets/images/image4.png'
 import refri from '../../assets/images/image 6.png'
 
+import excluir from '../../assets/icons/delete.png'
+import editar from '../../assets/icons/edit.png' 
+import Lanches from './cardLog/lanches';
 
-export default function Categorias() {
+
+
+const CategoriasLog = () => {
   const [salgado, setSalgado] = useState(false);
   const [lanche, setLanche] = useState(false);
   const [bebidas, setBebida] = useState(false);
   const [outros, setOutros] = useState(false);
 
+  const nav = useNavigate()
+
   return (
     <>
-      <div className="categoria-container">
+    <div className="categoria-container">
         <h1>Categorias:</h1>
         <div className="categoria-itens">
           <button
             className="categoriaBtn"
             onClick={() => {
               setLanche(true)
-              setBebida(false)
-              setSalgado(false)
-              setOutros(false)
             }}
           >
             <img src={iconlanche} alt="lanche" className="icon-categoria" />
@@ -46,7 +51,7 @@ export default function Categorias() {
               setBebida(false)
               setSalgado(true)
               setOutros(false)
-            }}          >
+            }}>
             <img src={iconsalgado} alt="lanche" className="icon-categoria" />
             <h4>Salgados</h4>
           </button>
@@ -74,20 +79,7 @@ export default function Categorias() {
           </button>
         </div>
       </div>
-      {lanche && 
-        <div className="container-lanche">
-        <h1>Lanches</h1>
-        <div className="card">
-          <img src={lancheFoto} alt="lanche1" id="imagem" />
-          <div className="lanche-txt">
-            <h3 id="nome">X-tudo</h3>
-            <h4 id="descricao">Pão, Hamburguer, Salada, Bacon e Ovo</h4>
-            <h3 id="preco">R$10</h3>
-          </div> 
-        </div>
-
-        </div>
-      }
+      {lanche && <Lanches/>}
       {salgado &&
         <div className='container-lanche'>
         <h1>Salgados</h1>
@@ -99,6 +91,14 @@ export default function Categorias() {
                 <h3 id='preco'>R$5</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
       {bebidas &&
@@ -112,6 +112,14 @@ export default function Categorias() {
                 <h3 id='preco'>R$5</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
       {outros &&
@@ -125,9 +133,18 @@ export default function Categorias() {
                 <h3 id='preco'>R$15</h3>
             </div>
         </div>
+        <div className="botoes">
+          <button>
+            <img src={editar} alt="" />
+          </button>
+          <button>
+            <img src={excluir} alt="" />
+          </button>
+          </div> 
         </div>
       }
     </>
-
-  );
+  )
 }
+
+export default CategoriasLog

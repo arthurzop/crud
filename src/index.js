@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import Home from './pages/home';
-import Logado from './pages/homeLog';
+import HomeLog from './pages/homeLog';
 import "./index.css"
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 const router = createBrowserRouter([
-    
-            {
-                path: "/",
-                element: <Home/>
-            },
-            {
-                path: "/logado",
-                element: <Logado/>
-            }
+    {
+        path: "/",
+        element: <Home/>
+    },
+    {
+        path: "/logado",
+        element: <HomeLog/>
+    }
     
 ])
 
