@@ -9,12 +9,6 @@ import iconoutros from "../../assets/icons/icons8-mais-64.png";
 import iconsalgado from "../../assets/icons/icons8-pão-64.png";
 import iconbebidas from "../../assets/icons/icons8-refrigerante-50.png";
 
-//importando as categorias (mock)
-import lancheFoto from "../../assets/images/image 1.png";
-import coxinha from '../../assets/images/image2.png'
-import acai from '../../assets/images/image4.png'
-import refri from '../../assets/images/image 6.png'
-
 
 export default function Categorias() {
   const [salgado, setSalgado] = useState(false);
@@ -78,7 +72,6 @@ export default function Categorias() {
         <div className="container-lanche">
         <h1>Lanches</h1>
         <div className="card">
-          <img src={lancheFoto} alt="lanche1" id="imagem" />
           <div className="lanche-txt">
             <h3 id="nome">X-tudo</h3>
             <h4 id="descricao">Pão, Hamburguer, Salada, Bacon e Ovo</h4>
@@ -92,7 +85,6 @@ export default function Categorias() {
         <div className='container-lanche'>
         <h1>Salgados</h1>
         <div className='card'>
-        <img src={coxinha} alt='lanche1' id='imagem'/>
             <div className='lanche-txt'>
                 <h3 id='nome'>Coxinha</h3>
                 <h4 id='descricao'>Frango e Catupiry</h4>
@@ -105,7 +97,6 @@ export default function Categorias() {
         <div className='container-lanche'>
         <h1>Bebidas</h1>
         <div className='card'>
-            <img src={refri} alt='lanche1' id='imagem'/>
             <div className='lanche-txt'>
                 <h3 id='nome'>Refrigerantes</h3>
                 <h4 id='descricao'>Coca Cola, Guaraná, Pepsi</h4>
@@ -118,7 +109,6 @@ export default function Categorias() {
         <div className='container-lanche'>
         <h1>Outros</h1>
         <div className='card'>
-        <img src={acai} alt='lanche1' id='imagem'/>
             <div className='lanche-txt'>
                 <h3 id='nome'>Açaí</h3>
                 <h4 id='descricao'>Acompanhamentos: Banana, Granola, Leite em Pó</h4>
