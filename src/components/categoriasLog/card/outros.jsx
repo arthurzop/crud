@@ -1,9 +1,9 @@
 import React from "react";
-import editar from "../../../assets/icons/edit.png";
-import excluir from "../../../assets/icons/delete.png";
 import CategoriasLog from "../categoriasLog";
 import HeaderLog from "../../headerLog/headerLog";
 import BtnAdicionar from "../../btnAdicionar/btnAdicionar";
+import Btns from "../../btnCrud/btns";
+
 
 const Outros = () => {
   return (
@@ -22,14 +22,7 @@ const Outros = () => {
             <h3 id="preco">R$15</h3>
           </div>
         </div>
-        <div className="botoes">
-          <button>
-            <img src={editar} alt="" />
-          </button>
-          <button>
-            <img src={excluir} alt="" />
-          </button>
-        </div>
+        <Btns/>
       </div>
     </>
   );
