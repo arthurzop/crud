@@ -16,7 +16,7 @@ Tendo a possibilidade dos usuários (alunos e professores) verem o que está dis
 
 ## Deploy:
 - Projeto upado pelo Vercel
-- [https://cantinasenai.vercel.app]
+  `https://cantinasenai.vercel.app`
 
   
 
@@ -28,26 +28,23 @@ Certifique-se de ter o Node.js instalado em sua máquina. Se não tiver, você p
 ## Passos para Rodar a Aplicação
 ### 1. Clone o Repositório:
 
- - git clone https://github.com/arthurzop/crud.git
+ - `git clone https://github.com/arthurzop/crud.git`
 
 
 ### 2. Instale as Dependências:
 
- - Acesse o diretório do projeto via terminal e execute o comando:
+ #### Acesse o diretório do projeto via terminal e execute o comando:
 
-  - cd nome-do-projeto
-  - npm i
+  - `cd nome-do-projeto`
+  - `npm i`
 
 
 ### 3. Inicie o Servidor de Desenvolvimento:
+#### Após a instalação das dependências, execute o seguinte comando:
 
- - Após a instalação das dependências, execute o seguinte comando:
-
-  - npm start
+  - `npm start`
 
 
 ### 4. Visualize a Aplicação:
+#### A aplicação estará disponível no seu navegador em `http://localhost:3000`
 
- - A aplicação estará disponível no seu navegador em http://localhost:3000.
-
-# crud
