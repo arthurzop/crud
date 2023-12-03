@@ -16,7 +16,7 @@ Tendo a possibilidade dos usuários (alunos e professores) verem o que está dis
 
 ## Deploy:
 - Projeto upado pelo Vercel
-  `https://cantinasenai.vercel.app`
+  https://cantinasenai.vercel.app
 
   
 
