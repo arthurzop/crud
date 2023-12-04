@@ -5,23 +5,42 @@ import "./btnAdicionar.css";
 
 function BtnAdicionar() {
   const [openModal, setOpenModal] = useState(false);
-
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState(0);
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
 
-  function handleSalvar() {
-    if(nome === "" || valor === "" || descricao === ""){
-      toast.warning("Preencha todos os campos!")
-    }
-    else{
-      //manda pro banco se tiver tudo certo
-      toast.success("Item salvo com sucesso!")
+  async function handleSalvar() {
+    if (nome === "" || valor === "" || descricao === "") {
+      toast.warning("Preencha todos os campos!");
+    } else {
+      try {
+        const response = await fetch('https://funny-handkerchief-newt.cyclic.app/criar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://funny-handkerchief-newt.cyclic.app', // Adicione este cabeçalho
+          },
+          body: JSON.stringify({
+            nome,
+            preco: valor,
+            descricao,
+            categoria,
+          }),
+        });
+
+        if (response.ok) {
+          toast.success("Item salvo com sucesso!");
+          setOpenModal(false);
+        } else {
+          toast.error("Não foi possível adicionar o item.");
+        }
+      } catch (error) {
+        console.error("Erro ao salvar o item:", error);
+        toast.error("Erro ao salvar o item. Revise as informações.");
+      }
     }
   }
-
-
   return (
     <>
       <div className="container-botao">
