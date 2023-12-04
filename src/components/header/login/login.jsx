@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,25 +8,39 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    if (username === "a" && password === "a") {
-      toast.success("Login bem-sucedido!");
-      setUsername("");
-      setPassword("");
-      onLoginSuccess();
-    } else if (username === "" || password === "") {
-      toast.warn("Preencha todos os campos!");
-    } else {
-      toast.error("Dados Incorretos!");
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('https://funny-handkerchief-newt.cyclic.app/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://funny-handkerchief-newt.cyclic.app', // Adicione este cabeçalho
+          },
+        body: JSON.stringify({ usuario: username, senha : password }),
+      });
+
+      if (response.ok) {
+        // Se o login for bem-sucedido
+        toast.success("Login bem-sucedido!");
+        setUsername("");
+        setPassword("");
+        onLoginSuccess();
+      } else {
+        // Se o login falhar
+        toast.error("Dados Incorretos!");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      toast.error("Erro ao fazer login. Consulte o console para obter mais informações.");
     }
   };
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const onLoginSuccess = () => {
-    setTimeout(() => props.setTrigger(false), 1100)
-    nav("/logado")
-  }
+    setTimeout(() => props.setTrigger(false), 1100);
+    nav("/logado");
+  };
 
   return props.trigger ? (
     <div className="popup">
@@ -39,10 +53,7 @@ const Login = (props) => {
       <div className="container-login">
         <div className="login-top">
           <h1>Login</h1>
-          <button
-            onClick={() => props.setTrigger(false)}
-            className="login-sair"
-          >
+          <button onClick={() => props.setTrigger(false)} className="login-sair">
             ✕
           </button>
         </div>

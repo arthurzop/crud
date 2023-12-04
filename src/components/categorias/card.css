@@ -1,3 +1,7 @@
+/* *{
+  border: red 1px solid;
+} */
+
 .container-lanche {
   display: flex;
   flex-direction: column;
@@ -12,7 +16,7 @@
 
 .card {
   display: flex;
-
+  margin: 2vh 0;
   width: 80%;
   padding: 2vh 3vw;
   border-radius: 10px;
@@ -51,8 +55,8 @@
 .botoes{
   display: flex;
   flex-direction: row;
-  width: 80%;
   justify-content: end;
+  align-items: end;
   gap: 10px;
 }
 
@@ -60,7 +64,6 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin: 1vh 0;
 }
 
 .botoes button img{

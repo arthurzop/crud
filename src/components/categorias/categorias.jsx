@@ -1,20 +1,33 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./categoria.css";
 import "./card.css";
 
-import { useState } from "react";
-
-//importando os icones
 import iconlanche from "../../assets/icons/icons8-hambúrguer-48.png";
 import iconoutros from "../../assets/icons/icons8-mais-64.png";
 import iconsalgado from "../../assets/icons/icons8-pão-64.png";
 import iconbebidas from "../../assets/icons/icons8-refrigerante-50.png";
-
-
 export default function Categorias() {
-  const [salgado, setSalgado] = useState(false);
-  const [lanche, setLanche] = useState(false);
-  const [bebidas, setBebida] = useState(false);
-  const [outros, setOutros] = useState(false);
+  const [categoria, setCategoria] = useState(null);
+  const [itens, setItens] = useState([]);
+
+  useEffect(() => {
+    // Chame a API para buscar os itens da categoria quando a categoria for selecionada
+    if (categoria) {
+      axios
+        .get(`https://funny-handkerchief-newt.cyclic.app/buscar/${categoria}`)
+        .then((response) => {
+          setItens(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar itens da API:", error);
+        });
+    }
+  }, [categoria]);
+
+  const handleClick = (categoria) => {
+    setCategoria(categoria);
+  };
 
   return (
     <>
@@ -23,101 +36,49 @@ export default function Categorias() {
         <div className="categoria-itens">
           <button
             className="categoriaBtn"
-            onClick={() => {
-              setLanche(true)
-              setBebida(false)
-              setSalgado(false)
-              setOutros(false)
-            }}
+            onClick={() => handleClick("lanche")}
           >
             <img src={iconlanche} alt="lanche" className="icon-categoria" />
             <h4>Lanches</h4>
           </button>
           <button
             className="categoriaBtn"
-            onClick={() => {
-              setLanche(false)
-              setBebida(false)
-              setSalgado(true)
-              setOutros(false)
-            }}          >
+            onClick={() => handleClick("salgados")}
+          >
             <img src={iconsalgado} alt="lanche" className="icon-categoria" />
             <h4>Salgados</h4>
           </button>
           <button
             className="categoriaBtn"
-            onClick={() => {
-              setLanche(false)
-              setBebida(true)
-              setSalgado(false)
-              setOutros(false)
-            }}          >
+            onClick={() => handleClick("bebidas")}
+          >
             <img src={iconbebidas} alt="lanche" className="icon-categoria" />
             <h4>Bebidas</h4>
           </button>
           <button
             className="categoriaBtn"
-            onClick={() => {
-              setLanche(false)
-              setBebida(false)
-              setSalgado(false)
-              setOutros(true)
-            }}          >
+            onClick={() => handleClick("outros")}
+          >
             <img src={iconoutros} alt="lanche" className="icon-categoria" />
             <h4>Outros</h4>
           </button>
         </div>
       </div>
-      {lanche && 
+
+      {itens.length > 0 && (
         <div className="container-lanche">
-        <h1>Lanches</h1>
-        <div className="card">
-          <div className="lanche-txt">
-            <h3 id="nome">X-tudo</h3>
-            <h4 id="descricao">Pão, Hamburguer, Salada, Bacon e Ovo</h4>
-            <h3 id="preco">R$10</h3>
-          </div> 
-        </div>
-
-        </div>
-      }
-      {salgado &&
-        <div className='container-lanche'>
-        <h1>Salgados</h1>
-        <div className='card'>
-            <div className='lanche-txt'>
-                <h3 id='nome'>Coxinha</h3>
-                <h4 id='descricao'>Frango e Catupiry</h4>
-                <h3 id='preco'>R$5</h3>
+          <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1>
+          {itens.map((item) => (
+            <div className="card" key={item.id}>
+              <div className="lanche-txt">
+                <h3 id="nome">{item.nome}</h3>
+                <h4 id="descricao">{item.descricao}</h4>
+                <h3 id="preco">{`R$${item.preco}`}</h3>
+              </div>
             </div>
+          ))}
         </div>
-        </div>
-      }
-      {bebidas &&
-        <div className='container-lanche'>
-        <h1>Bebidas</h1>
-        <div className='card'>
-            <div className='lanche-txt'>
-                <h3 id='nome'>Refrigerantes</h3>
-                <h4 id='descricao'>Coca Cola, Guaraná, Pepsi</h4>
-                <h3 id='preco'>R$5</h3>
-            </div>
-        </div>
-        </div>
-      }
-      {outros &&
-        <div className='container-lanche'>
-        <h1>Outros</h1>
-        <div className='card'>
-            <div className='lanche-txt'>
-                <h3 id='nome'>Açaí</h3>
-                <h4 id='descricao'>Acompanhamentos: Banana, Granola, Leite em Pó</h4>
-                <h3 id='preco'>R$15</h3>
-            </div>
-        </div>
-        </div>
-      }
+      )}
     </>
-
   );
 }
