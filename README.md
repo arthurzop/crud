@@ -10,7 +10,7 @@ Tendo a possibilidade dos usuários (alunos e professores) verem o que está dis
 
 ## Tecnologias Utilizadas:
 - React.js (Front-end e funcionalidades)
-- MongoDB (Banco de dados)
+- MySQL (Banco de dados)
 - Node.js (API)
 - Vercel
 
