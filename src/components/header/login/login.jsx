@@ -35,6 +35,12 @@ const Login = (props) => {
     }
   };
 
+  const handleClick = (event) => {
+    if(event.key === "Enter"){
+      handleLogin()
+    }
+  }
+
   const nav = useNavigate();
 
   const onLoginSuccess = () => {
@@ -72,6 +78,7 @@ const Login = (props) => {
             <input
               type="password"
               value={password}
+              onKeyPress={handleClick}
               onChange={(e) => setPassword(e.target.value)}
               id="input-senha"
             />
