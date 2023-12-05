@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import plus from "../../assets/icons/plus.png";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "./btnAdicionar.css";
+import { ClipLoader } from "react-spinners";
 
 function BtnAdicionar() {
   const [openModal, setOpenModal] = useState(false);
@@ -10,37 +11,66 @@ function BtnAdicionar() {
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
 
+  const [loading, setLoading] = useState(false);
+  const [color, setColor] = useState("#A1FF91");
+
+  // const override: CSSProperties = {
+  //   display: "block",
+  //   margin: "0 auto",
+  //   borderColor: "red",
+  // };
+
+  async function handleLimpar() {
+    setNome("")
+    setValor(0)
+    setDescricao("")
+    setCategoria("")
+  }
+
   async function handleSalvar() {
+    setLoading(true);
     if (nome === "" || valor === "" || descricao === "") {
+      setLoading(false)
       toast.warning("Preencha todos os campos!");
+      
     } else {
       try {
-        const response = await fetch('https://funny-handkerchief-newt.cyclic.app/criar', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://funny-handkerchief-newt.cyclic.app', // Adicione este cabeçalho
-          },
-          body: JSON.stringify({
-            nome,
-            preco: valor,
-            descricao,
-            categoria,
-          }),
-        });
+        const response = await fetch(
+          "https://funny-handkerchief-newt.cyclic.app/criar",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin":
+                "https://funny-handkerchief-newt.cyclic.app", // Adicione este cabeçalho
+            },
+            body: JSON.stringify({
+              nome,
+              preco: valor,
+              descricao,
+              categoria,
+            }),
+          }
+        );
 
         if (response.ok) {
           toast.success("Item salvo com sucesso!");
-          setOpenModal(false);
+          setTimeout(() => setOpenModal(false), 1000);
+          setLoading(false)
+          handleLimpar()
         } else {
           toast.error("Não foi possível adicionar o item.");
+          setLoading(false)
         }
       } catch (error) {
         console.error("Erro ao salvar o item:", error);
         toast.error("Erro ao salvar o item. Revise as informações.");
+        setLoading(false)
+
       }
     }
   }
+
   return (
     <>
       <div className="container-botao">
@@ -52,34 +82,42 @@ function BtnAdicionar() {
       {openModal && (
         <>
           <div className="popup">
-          <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            draggable
-            pauseOnHover
-          />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              draggable
+              pauseOnHover
+            />
             <div className="container-add">
               <div className="top">
                 <h1>Novo item</h1>
                 <button
                   onClick={() => setOpenModal(false)}
-                  className="add-sair">
+                  className="add-sair"
+                >
                   ✕
                 </button>
               </div>
               <div className="add-form">
                 <div className="form-item">
                   <h3>Nome do Item:</h3>
-                  <input type="text" placeholder="Ex: X-Tudo" 
-                  onChange={(e) => setNome(e.target.value)}/>
+                  <input
+                    type="text"
+                    placeholder="Ex: X-Tudo"
+                    onChange={(e) => setNome(e.target.value)}
+                  />
                 </div>
                 <div className="form-item">
                   <h3>Valor:</h3>
-                  <input type="number" min={0} placeholder="R$" 
-                  onChange={(e) => setValor(e.target.value)}/>
+                  <input
+                    type="number"
+                    min={0}
+                    placeholder="R$"
+                    onChange={(e) => setValor(e.target.value)}
+                  />
                 </div>
                 <div className="form-item">
                   <h3>Descrição:</h3>
@@ -105,9 +143,15 @@ function BtnAdicionar() {
                 </div>
               </div>
               <div className="botoes-add">
-                {/* retornando um array com as opcoes (nome, valor, descricao e categoria) */}
-                {/* <button onClick={() => {console.log([nome, valor, descricao, categoria])}}>Salvar</button> */}
                 <button onClick={() => handleSalvar()}>Salvar</button>
+                <ClipLoader
+                  color={color}
+                  loading={loading}
+                  cssOverride={false}
+                  size={30}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
               </div>
             </div>
           </div>

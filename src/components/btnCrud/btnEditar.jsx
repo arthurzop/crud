@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "../btnAdicionar/btnAdicionar.css";
 import HomeLog from "../../pages/homeLog";
 
+
 const BtnEditar = () => {
   const nav = useNavigate();
 
