@@ -78,7 +78,7 @@ function BtnAdicionar() {
                 </div>
                 <div className="form-item">
                   <h3>Valor:</h3>
-                  <input type="text" placeholder="R$" 
+                  <input type="number" min={0} placeholder="R$" 
                   onChange={(e) => setValor(e.target.value)}/>
                 </div>
                 <div className="form-item">
