@@ -10,43 +10,47 @@ const Login = (props) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://funny-handkerchief-newt.cyclic.app/login', {
-          method: 'POST',
+      const response = await fetch(
+        "https://funny-handkerchief-newt.cyclic.app/login",
+        {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://funny-handkerchief-newt.cyclic.app', // Adicione este cabeçalho
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":
+              "https://funny-handkerchief-newt.cyclic.app", // Adicione este cabeçalho
           },
-        body: JSON.stringify({ usuario: username, senha : password }),
-      });
+          body: JSON.stringify({ usuario: username, senha: password }),
+        }
+      );
 
       if (response.ok) {
-        // Se o login for bem-sucedido
-        toast.success("Login bem-sucedido!");
+        // Se o login for bem-sucedido  
         setUsername("");
         setPassword("");
-        onLoginSuccess();
+        toast.success("Logado com sucesso!")
+        setTimeout(() => props.setTrigger(false), 1000);
+        nav("/logado");
       } else {
         // Se o login falhar
         toast.error("Dados Incorretos!");
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      toast.error("Erro ao fazer login. Consulte o console para obter mais informações.");
+      toast.error(
+        "Erro ao fazer login. Consulte o console para obter mais informações."
+      );
     }
   };
 
   const handleClick = (event) => {
-    if(event.key === "Enter"){
-      handleLogin()
+    if (event.key === "Enter") {
+      handleLogin();
     }
-  }
+  };
 
   const nav = useNavigate();
 
-  const onLoginSuccess = () => {
-    setTimeout(() => props.setTrigger(false), 1100);
-    nav("/logado");
-  };
+  const onLoginSuccess = () => {};
 
   return props.trigger ? (
     <div className="popup">
@@ -59,7 +63,10 @@ const Login = (props) => {
       <div className="container-login">
         <div className="login-top">
           <h1>Login</h1>
-          <button onClick={() => props.setTrigger(false)} className="login-sair">
+          <button
+            onClick={() => props.setTrigger(false)}
+            className="login-sair"
+          >
             ✕
           </button>
         </div>
@@ -69,6 +76,7 @@ const Login = (props) => {
             <input
               type="text"
               value={username}
+              onKeyPress={handleClick}
               onChange={(e) => setUsername(e.target.value)}
               id="input-usuario"
             />
