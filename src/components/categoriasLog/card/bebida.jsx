@@ -6,12 +6,14 @@ import CategoriasLog from "../categoriasLog";
 import HeaderLog from "../../headerLog/headerLog";
 import BtnAdicionar from "../../btnAdicionar/btnAdicionar";
 import Btns from "../../btnCrud/btns";
+import BtnDeletar from '../../btnCrud/btnDelete';
+import BtnEditar from '../../btnCrud/btnEditar';
 
 const Bebidas = () => {
-  const [bebidas, setBebidas] = useState([]);
+  const [lanches, setBebidas] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
-    // Substitua a URL abaixo pela sua API e rota correta para obter itens da categoria "bebidas"
     axios.get('https://funny-handkerchief-newt.cyclic.app/buscar/bebidas')
       .then(response => {
         setBebidas(response.data);
@@ -21,6 +23,29 @@ const Bebidas = () => {
       });
   }, []);
 
+  const handleEdit = (id) => {
+    setSelectedId(id);
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`https://funny-handkerchief-newt.cyclic.app/deletar/${id}`)
+      .then(response => {
+        if (response.status === 200) {
+          setBebidas(prevLanches => prevLanches.filter(item => item.id !== id));
+          setSelectedId(null);
+        } else {
+          console.error("Erro ao deletar o item. Revise as informações.");
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao deletar o item:", error);
+      });
+  };
+
+  const getSelectedProduct = () => {
+    return lanches.find((item) => item.id === selectedId);
+  };
+
   return (
     <>
       <HeaderLog />
@@ -28,20 +53,40 @@ const Bebidas = () => {
       <CategoriasLog />
       <div className="container-lanche">
         <h1>Bebidas</h1>
-        {bebidas.map(item => (
+        {lanches.map(item => (
           <div key={item.id} className="card">
             <div className="lanche-txt">
               <h3 id="nome">{item.nome}</h3>
               <h4 id="descricao">{item.descricao}</h4>
               <h3 id="preco">{`R$${item.preco}`}</h3>
-              
             </div>
-            <Btns/>
+            <Btns
+              onEdit={() => handleEdit(item.id)}
+              onDelete={() => handleDelete(item.id)}
+            />
           </div>
-          
         ))}
-        
       </div>
+      {selectedId && (
+        <BtnDeletar
+          onDeletar={() => {
+            console.log("Deletar clicado");
+            // Handle deletion completion if needed
+          }}
+          onCancelar={() => {
+            console.log("Cancelar clicado");
+            setSelectedId(null);
+          }}
+          categoria="bebidas"
+          id={selectedId}
+        />
+      )}
+      {selectedId && (
+        <BtnEditar
+          idProduto={selectedId}
+          produto={getSelectedProduct()} // Pass the selected product data
+        />
+      )}
     </>
   );
 };

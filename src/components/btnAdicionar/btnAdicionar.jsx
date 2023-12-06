@@ -21,18 +21,17 @@ function BtnAdicionar() {
   // };
 
   async function handleLimpar() {
-    setNome("")
-    setValor(0)
-    setDescricao("")
-    setCategoria("")
+    setNome("");
+    setValor(0);
+    setDescricao("");
+    setCategoria("");
   }
 
   async function handleSalvar() {
     setLoading(true);
     if (nome === "" || valor === "" || descricao === "") {
-      setLoading(false)
+      setLoading(false);
       toast.warning("Preencha todos os campos!");
-      
     } else {
       try {
         const response = await fetch(
@@ -56,17 +55,16 @@ function BtnAdicionar() {
         if (response.ok) {
           toast.success("Item salvo com sucesso!");
           setTimeout(() => setOpenModal(false), 1000);
-          setLoading(false)
-          handleLimpar()
+          setLoading(false);
+          handleLimpar();
         } else {
           toast.error("Não foi possível adicionar o item.");
-          setLoading(false)
+          setLoading(false);
         }
       } catch (error) {
         console.error("Erro ao salvar o item:", error);
         toast.error("Erro ao salvar o item. Revise as informações.");
-        setLoading(false)
-
+        setLoading(false);
       }
     }
   }
@@ -135,6 +133,7 @@ function BtnAdicionar() {
                     onChange={(e) => setCategoria(e.target.value)}
                     className="categoria"
                   >
+                    <option value="null">Escolha uma Categoria:</option>
                     <option value="lanches">Lanches</option>
                     <option value="salgados">Salgados</option>
                     <option value="bebidas">Bebidas</option>
