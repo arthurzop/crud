@@ -36,7 +36,7 @@ export default function Categorias() {
         <div className="categoria-itens">
           <button
             className="categoriaBtn"
-            onClick={() => handleClick("lanche")}
+            onClick={() => handleClick("lanches")}
           >
             <img src={iconlanche} alt="lanche" className="icon-categoria" />
             <h4>Lanches</h4>
