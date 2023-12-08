@@ -48,4 +48,3 @@ Certifique-se de ter o Node.js instalado em sua máquina. Se não tiver, você p
 ### 4. Visualize a Aplicação:
 #### A aplicação estará disponível no seu navegador em `http://localhost:3000`
 
-# crudTeste
