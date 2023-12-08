@@ -21,7 +21,7 @@ const Btns = ({ onEdit, onDelete }) => {
   const handleDeleteClick = () => {
     if (onDelete) {
       onDelete();
-      setBtnExcluir(true)
+      setBtnExcluir(false)
     }
   };
 

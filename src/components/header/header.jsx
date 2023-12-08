@@ -45,7 +45,7 @@ export default function Header() {
               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
             />
           </svg>
-          <input type="text" placeholder="O que procura?" id="pesquisa" />
+          <input type="text" placeholder="O que procura?" id="pesquisa" disabled/>
         </div>
       </div>
       {/* Chamando o componente login e setando o trigger */}

@@ -27,7 +27,6 @@ const Login = (props) => {
         // Se o login for bem-sucedido  
         setUsername("");
         setPassword("");
-        toast.success("Logado com sucesso!")
         setTimeout(() => props.setTrigger(false), 1000);
         nav("/logado");
       } else {

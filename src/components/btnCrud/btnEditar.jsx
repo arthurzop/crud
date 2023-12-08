@@ -34,16 +34,14 @@ const BtnEditar = ({ idProduto }) => {
         });
 
         if (response.ok) {
-          toast.success("Item salvo com sucesso!");
           
         } else {
-          toast.error("Não foi possível adicionar o item.");
         }
       } catch (error) {
         console.error("Erro ao salvar o item:", error);
-        toast.error("Erro ao salvar o item. Revise as informações.");
       }
     }
+    nav("/logado")
   }
 
 
@@ -105,6 +103,7 @@ const BtnEditar = ({ idProduto }) => {
                 onChange={(e) => setCategoria(e.target.value)}
                 className="categoria"
               >
+                <option value="null">Escolha uma Opção: </option>
                 <option value="lanches">Lanches</option>
                 <option value="salgados">Salgados</option>
                 <option value="bebidas">Bebidas</option>

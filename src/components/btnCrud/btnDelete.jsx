@@ -13,7 +13,6 @@ const BtnDeletar = ({ onDeletar, onCancelar, categoria, id }) => {
     try {
       console.log("Iniciando a exclusão para o item com ID:", id);
       if (!id) {
-        toast.error("ID do item não especificado. Operação de exclusão cancelada.");
         return;
       }
 
@@ -22,14 +21,11 @@ const BtnDeletar = ({ onDeletar, onCancelar, categoria, id }) => {
 
       // Verifica o status da resposta
       if (response.status === 200) {
-        toast.success("Item deletado com sucesso.");
         onDeletar(id);
       } else {
-        toast.error("Erro ao deletar o item. Revise as informações.");
       }
     } catch (error) {
       console.error("Erro ao deletar o item:", error);
-      toast.error("Erro ao deletar o item. Revise as informações.");
     }
   };
 
